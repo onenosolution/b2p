@@ -280,7 +280,7 @@ function buy(){
 		},
 		dataType : "json",
 		success : function(data) {
-			alert("添加成功");
+			alert(data);
 			window.location.href="./c_cart.html";
 		},
 		error : function(data) {
