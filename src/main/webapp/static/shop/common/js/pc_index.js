@@ -118,6 +118,8 @@ function setBrand(x){
 	if(x == brand_s){
 		return;
 	}
+	$('#keyword1').val("");
+	G_keyword = null;
 	$('#brand_' + brand_s).attr("class","");
 	x != "all" ? brand_s = x : brand_s = "all";
 	G_brand = x == "all" ? null : x;
@@ -251,7 +253,7 @@ function renderSearch(data) {
 	
 	html = ""
 	if(p){
-		html += "<a class=\"select\" onclick=\"setProvince(\'all\')\" id=\"province_all\" href=\"#\" >全部</a>";
+		html += "<a class=\"select\" onclick=\"setProvince(\'all\')\" id=\"province_all\" onhref=\"#\" >全部</a>";
 		for ( var i in two) {
 			html += "<a href=\"#\" onclick=\"setProvince(\'"+two[i]['id']+"\')\" id=\"province_"+two[i]['id']+"\">" + two[i]['areaName'] + "</a>";
 		}
