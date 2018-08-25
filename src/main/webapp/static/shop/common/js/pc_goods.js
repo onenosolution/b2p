@@ -280,8 +280,13 @@ function buy(){
 		},
 		dataType : "json",
 		success : function(data) {
-			alert(data);
-			window.location.href="./c_cart.html";
+			if(data=="0"){
+				alert("添加成功");
+				window.location.href="./c_cart.html";
+			}else{
+				alert("商品已经存在");
+			}
+			
 		},
 		error : function(data) {
 			//layer.alert('系统错误');

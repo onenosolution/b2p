@@ -302,9 +302,9 @@ public class CustomerCenterController extends BaseController{
 		String gid=request.getParameter("goods_id");
 		boolean rs = shopCartService.addCart(uid, gid);
 		if(rs) {
-			return renderString(response, "添加成功");
+			return renderString(response, "0");
 		}else {
-			return renderString(response, "已经存在");
+			return renderString(response, "1");
 		}
 		
 	}
