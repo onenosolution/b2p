@@ -18,7 +18,7 @@ $.ajax({
 					'</p>'+
 					'<div class="baby_kuang clearfix">'+
 						'<span class="icon_png sanjiao"></span>'+
-						'<p id="goods_desc">'+item.commentMessage+'</p>'+
+						'<p style="width:700px;height:50px;word-break:break-all;" id="goods_desc">'+item.commentMessage+'</p>'+
 					'</div>'+
 				'</div>'+
 			'</div>');
