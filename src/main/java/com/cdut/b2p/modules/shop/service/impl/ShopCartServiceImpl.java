@@ -48,6 +48,14 @@ public class ShopCartServiceImpl  implements ShopCartService{
 	@Transactional(readOnly=false)
 	@Override
 	public boolean addCart(String uid, String gid) {
+		//ShopCart c = shopCartMapper.selectByPrimaryKey(gid)
+		ShopCartExample sce = new ShopCartExample();
+		sce.or().andCartGoodsIdEqualTo(gid).andCartUserIdEqualTo(uid);
+		List<ShopCart> c= shopCartMapper.selectByExample(sce);
+		if(c.size() > 0) {
+			return false;
+		}
+		
 		ShopCart shopCart=new ShopCart();
 		shopCart.setId(IdUtils.uuid());
 		shopCart.setCartUserId(uid);

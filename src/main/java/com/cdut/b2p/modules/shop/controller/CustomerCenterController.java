@@ -300,8 +300,13 @@ public class CustomerCenterController extends BaseController{
 	public String myCart(HttpServletResponse response,HttpServletRequest request) {
 		String uid=(String) request.getAttribute("uid");
 		String gid=request.getParameter("goods_id");
-		shopCartService.addCart(uid, gid);
-		return renderString(response, "添加成功");
+		boolean rs = shopCartService.addCart(uid, gid);
+		if(rs) {
+			return renderString(response, "添加成功");
+		}else {
+			return renderString(response, "已经存在");
+		}
+		
 	}
 	/**
 	 * @desc 查询我的购物车
