@@ -14,11 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cdut.b2p.common.utils.CacheUtils;
 import com.cdut.b2p.common.utils.IdUtils;
+import com.cdut.b2p.modules.shop.mapper.ShopCartMapper;
 import com.cdut.b2p.modules.shop.mapper.ShopGoodsMapper;
 import com.cdut.b2p.modules.shop.mapper.ShopOrderMapper;
 import com.cdut.b2p.modules.shop.mapper.ShopUserMapper;
 import com.cdut.b2p.modules.shop.mapper.ShopWalletMapper;
+import com.cdut.b2p.modules.shop.po.ShopCart;
+import com.cdut.b2p.modules.shop.po.ShopCartExample;
 import com.cdut.b2p.modules.shop.po.ShopGoods;
 import com.cdut.b2p.modules.shop.po.ShopGoodsExample;
 import com.cdut.b2p.modules.shop.po.ShopOrder;
@@ -41,6 +45,8 @@ public class ShopOrderServiceImpl implements ShopOrderService{
 	private ShopWalletMapper shopWalletMapper;
 	@Autowired
 	private ShopUserMapper shopUserMapper;
+	@Autowired
+	private ShopCartMapper shopCartMapper;
 	/**
 	 * @desc 上一个月成交的订单数量
 	 * @author zsb
@@ -288,6 +294,28 @@ public class ShopOrderServiceImpl implements ShopOrderService{
 		order.setOrderStatus("1");
 		order.setUpdateDate(new Date());
 		shopOrderMapper.updateByExampleSelective(order, example);
+		
+		//更新商品
+		ShopOrder o = shopOrderMapper.selectByPrimaryKey(id);
+		ShopGoodsExample sge=new ShopGoodsExample();
+		ShopGoods goods = new ShopGoods();
+		sge.or().andIdEqualTo(o.getOrderGoodsId());
+		goods.setGoodsStatus("1");
+		goods.setUpdateDate(new Date());
+		shopGoodsMapper.updateByExampleSelective(goods, sge);
+		CacheUtils.remove("goodslist");
+		CacheUtils.remove("goods_id_" + o.getOrderGoodsId());
+		CacheUtils.remove("goods_recommend");
+		
+		//更新购物车
+		ShopCartExample sce=new ShopCartExample();
+		ShopCart cart = new ShopCart();
+		sce.or().andCartUserIdEqualTo(o.getOrderBuyerId()).andCartGoodsIdEqualTo(o.getOrderGoodsId());
+		cart.setDelFlag("1");
+		cart.setUpdateDate(new Date());
+		shopCartMapper.updateByExampleSelective(cart, sce);
+				
+		
 		//更新钱包表
 		ShopWalletExample shopWalletExample=new ShopWalletExample();
 		shopWalletExample.or().andIdEqualTo(w_id);

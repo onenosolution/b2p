@@ -15,6 +15,7 @@ function setMyInfo(data){
 		}
     	if(data.model.Customer.userImage!=null||data.model.Customer.userImage!=""){
 			$("#roundnessSquareImg").attr('src','../..'+data.model.Customer.userImage);
+			$("#localFileImg").attr('src','../..'+data.model.Customer.userImage);
 		}
 		$("#userName").val(data.model.Customer.userName);
 		$("#userNickname").val(data.model.Customer.userNickname);
@@ -39,6 +40,11 @@ function change(){
 }
 /**/
 function upload(){
+	var image=$("#userface").val();
+	if(image==null||image==""){
+		return false;
+	}
+	$("#submitButton").css("display","block");
 	$("#subform").ajaxSubmit({
 		url:"/b2p/shop/customerCenter/uploadImage",
 		type:"post",

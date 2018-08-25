@@ -41,11 +41,11 @@ function render(data){
 		html += "</div></td><td class=\"width243\"><div class=\"my-item-item-tb-content-states\">";
 		html += "<p class=\"my-item-item-tb-content-states-p1\"><span>货架显示中</span></p>";
 		html += "<p class=\"my-item-item-tb-content-states-p2\">浏览 "+data[i]['goodsClickTimes']+"</p>";
-		html += "<p class=\"xsitxt\" id=\"zdmsgts_35131990758322\" style=\"display: block;\">该信息正处于置顶中，把电话充好电准备接电话吧~</p>";
+		//html += "<p class=\"xsitxt\" id=\"zdmsgts_35131990758322\" style=\"display: block;\">该信息正处于置顶中，把电话充好电准备接电话吧~</p>";
 		html += "</div></td><td><div class=\"my-item-item-tb-content-option\" id=\"\">";
 		html += "<span><a id=\"\" href=\"./goods_edit.html?goods_id="+data[i]['id']+"\" target=\"_blank\">修改</a></span>";
 		html += "<span><a onclick=\"del_goods(\'"+data[i]['id']+"\')\" id=\"\">删除</a></span>";
-		html += "<span><a onclick=\"top_goods(\'"+data[i]['id']+"\')\" class=\"commercial_link commercial_link_hyt\" >置顶</a></span>";
+		//html += "<span><a onclick=\"top_goods(\'"+data[i]['id']+"\')\" class=\"commercial_link commercial_link_hyt\" >置顶</a></span>";
 		html += "</div></td></tr><tr class=\"infotdno\"></tr></tbody></table></div>";
 	}
 	$('#my-item').html(html);

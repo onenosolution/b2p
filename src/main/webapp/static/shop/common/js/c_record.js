@@ -13,7 +13,7 @@ $.ajax({
 	              		'<td style="width:100px;"><span>'+'二手手机购买'+'</span></td>'+
 	              		'<td style="width:100px;"><span>'+timestampToTime(item.createDate)+'</span></td>'+
 	              		'<td style="width:100px;"><span>￥'+item.orderPrice+'</span></td>'+
-	              		'<td style="width:100px;"><a href="./goods.html?goods_id='+item.orderGoodsId+'"><span>评论一波</span></a></td>'+
+	              		'<td style="width:100px;"><a href="./goods.html?goods_id='+item.orderGoodsId+'"></a></td>'+
 	              	'</tr>');
                   });
 		    },

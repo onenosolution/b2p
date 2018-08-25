@@ -131,8 +131,8 @@ function closeAddress(){
 function sureAddress(){
 	var flag=false;
 	var id;
-	alert("保存新地址");
-	alert(area_select_id);
+	//alert("保存新地址");
+	//alert(area_select_id);
 	var addressDetail=$("#addressDetail").val();
 	var addressReceiverName=$("#addressReceiverName").val();
 	var addressTelphone=$("#addressTelphone").val();
@@ -157,27 +157,25 @@ function sureAddress(){
 			},
 			success : function(data) {
 				alert("地址添加成功");
-				flag==true;
 				id=data;
+				closeAddress();
+				$("#address").append('<div class="address-add">'+
+								'<div class="address-new">'+
+								'<i class="fa fa-chain"></i>'+
+								'<div class="text">'+addressReceiverName+'<span style="width:10px;">&&<span>'+addressDetail+'</div>'+
+							    '<input type="hidden" value="'+id+'">'+
+								'</div>'+
+						    '</div>'
+				);
+					
+				
 			},
 			error : function(data) {
 				window.location.href = "./login.html";
 			}
 		});
 	}
-	closeAddress();
-	alert(flag==true);
-	if(flag){
-		alert(1);
-		$("#address").append('<div class="address-add">'+
-					'<div class="address-new">'+
-					'<i class="fa fa-chain"></i>'+
-					'<div class="text">'+addressReceiverName+'<span style="width:10px;">&&<span>'+addressDetail+'</div>'+
-				    '<input type="hidden" value="'+id+'">'+
-					'</div>'+
-			    '</div>'
-	    );
-	}
+	
 }
 /*确认订单*/
 function sureOrder(){

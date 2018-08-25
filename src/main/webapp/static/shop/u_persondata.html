@@ -45,9 +45,9 @@
 									<form id="subform" name="subform" method="post" enctype="multipart/form-data" target="formSubmit" action="">
 										<div id="localFileImgBtnDiv">
 											<div id="">上传头像</div>
-											<input type="file" size="38" class="localFileImgBtn" id="userface" name="file" style="display:block" onchange="change()"/>
+											<input type="file" size="38" class="localFileImgBtn" id="userface" name="file" style="width: 120px;height: 120px;display:block" onchange="upload()"/>
 										</div>
-									     <input type="button" id="submitButton" value="更改头像" class="localFileImgBtn" style="display:none" onclick="upload()"/>
+									     <input type="button" id="submitButton" value="更改头像" class="localFileImgBtn" style="display:none" onclick=""/>
 										
 									</form>
 								</div>
@@ -82,7 +82,7 @@
 			<!--标题-->
 			<div id="changeDataTitle" class="changeDataTitle">
 				<h4 id="changeDataTitleText" class="changeDataTitleText">
-					修改个人资料</h4>
+					个人资料</h4>
 			</div>
 			<!--界面-->
 			<ul id="changeDataUl" class="changeDataUl">
@@ -99,7 +99,7 @@
 						</span> <input type="text" value="cdut135" id="userNickname"
 							maxlength="20" disabled="" />
 					</div>
-					<div id="changeNicenameBtnDiv">
+					<!-- <div id="changeNicenameBtnDiv">
 						<span class="changeNicknameBtn changeBtn" id="changeNicknameBtn"
 							onclick="clickLog('from=new_update_nickname')"> <i> </i>
 							修改
@@ -108,7 +108,7 @@
 							onclick="clickLog('from=new_confirm_nickname')"> <i> </i>
 							确认
 						</span>
-					</div>
+					</div> -->
 				</li>
 
 				<!--改手机-->
@@ -118,7 +118,7 @@
 						</span> <input type="text" value="cdut135" id="userTelphone"
 							maxlength="20" disabled="" />
 					</div>
-					<div id="changeNicenameBtnDiv">
+					<!-- <div id="changeNicenameBtnDiv">
 						<span class="changeNicknameBtn changeBtn" id="changeNicknameBtn"
 							onclick="clickLog('from=new_update_nickname')"> <i> </i>
 							修改
@@ -127,7 +127,7 @@
 							onclick="clickLog('from=new_confirm_nickname')"> <i> </i>
 							确认
 						</span>
-					</div>
+					</div> -->
 				</li>
 
 				<!--改邮箱-->
@@ -136,12 +136,12 @@
 						<span class="changeLabel"> 邮 <span> 箱 </span> 箱：
 						</span> <input id="userEmail" type="text" value="135****1920" disabled="" />
 					</div>
-					<div id="changeMobileBtnDiv">
+					<!-- <div id="changeMobileBtnDiv">
 						<span class="changemobileBtn changeBtn" id="changeMobileBtn"
 							onclick="clickLog('from=new_update_certemail')"> <i> </i>
 							<a id="changeMobileBtnUrl" class="changeMobileBtnUrl"> 修改 </a>
 						</span>
-					</div>
+					</div> -->
 				</li>
 
 			</ul>

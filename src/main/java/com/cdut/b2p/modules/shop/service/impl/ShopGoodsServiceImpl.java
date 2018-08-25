@@ -135,7 +135,7 @@ public class ShopGoodsServiceImpl implements ShopGoodsService {
 		List<ShopGoods> goodslist = (List<ShopGoods>) CacheUtils.get("goodslist");
 		if (goodslist == null) {
 			ShopGoodsExample sge = new ShopGoodsExample();
-			sge.or().andDelFlagEqualTo("0");
+			sge.or().andDelFlagEqualTo("0").andGoodsStatusEqualTo("0");
 			goodslist = shopGoodsMapper.selectByExample(sge);
 			CacheUtils.put("goodslist", goodslist);
 		}
@@ -158,7 +158,7 @@ public class ShopGoodsServiceImpl implements ShopGoodsService {
 		sge.setLimit(pageSize);
 		sge.setOffset(pageNum.equals(0) ? 0 : (long) ((pageNum - 1) * pageSize));
 		cri.andGoodsCategoryIdEqualTo(type);
-		cri.andDelFlagEqualTo("0");
+		cri.andDelFlagEqualTo("0").andGoodsStatusEqualTo("0");
 		if (area != null && !StringUtils.isBlank(area)) {
 			List<SysArea> arealist = sysAreaService.findAllChildrenByParentId(area);
 			List<String> areaIdList = new ArrayList<String>();
@@ -259,7 +259,7 @@ public class ShopGoodsServiceImpl implements ShopGoodsService {
 	@Override
 	public List<ShopGoods> findGoodsByDate(Date startDate, Date endDate) {
 		ShopGoodsExample example = new ShopGoodsExample();
-		example.or().andCreateDateBetween(startDate, endDate).andDelFlagEqualTo("0");
+		example.or().andCreateDateBetween(startDate, endDate).andDelFlagEqualTo("0").andGoodsStatusEqualTo("0");
 		List<ShopGoods> list = shopGoodsMapper.selectByExample(example);
 		return list;
 	}
@@ -272,7 +272,7 @@ public class ShopGoodsServiceImpl implements ShopGoodsService {
 		if(info == null) {
 			ShopGoods goods = shopGoodsMapper.selectByPrimaryKey(goods_id);
 			
-			if(goods.getDelFlag().equals("1")) {
+			if(goods.getDelFlag().equals("1") || goods.getGoodsStatus().equals("1")) {
 				return null;
 			}
 			
@@ -328,7 +328,7 @@ public class ShopGoodsServiceImpl implements ShopGoodsService {
 		if(list == null) {
 			ShopGoodsExample sge = new ShopGoodsExample();
 			ShopGoodsExample.Criteria cri = sge.createCriteria();
-			cri.andGoodsClickTimesGreaterThanOrEqualTo(300).andDelFlagEqualTo("0");
+			cri.andGoodsClickTimesGreaterThanOrEqualTo(300).andDelFlagEqualTo("0").andGoodsStatusEqualTo("0");
 			sge.setLimit(30);
 			List<ShopGoods> goodslist = shopGoodsMapper.selectByExampleWithBLOBs(sge);
 			list = new ArrayList<ShopGoodsInfo>();
@@ -409,7 +409,7 @@ public class ShopGoodsServiceImpl implements ShopGoodsService {
 	@Override
 	public List<ShopGoodsInfo> findGoodsBySellerId(String uid) {
 		ShopGoodsExample example = new ShopGoodsExample();
-		example.or().andGoodsSellerIdEqualTo(uid).andDelFlagEqualTo("0");;
+		example.or().andGoodsSellerIdEqualTo(uid).andDelFlagEqualTo("0").andGoodsStatusEqualTo("0");
 		List<ShopGoods> list = shopGoodsMapper.selectByExample(example);
 		List<ShopGoodsInfo> list1 = new ArrayList<ShopGoodsInfo>();
 		for(ShopGoods goods : list) {
